@@ -43,7 +43,7 @@ function requestStatus(status) {
                 let buttonHTML = '';
 
                 if (status === "available")
-                    buttonHTML += '<a class="btn btn-outline-success mt-auto" href="#">BUY</a>';
+                    buttonHTML += '<a class="btn btn-success mt-auto" href="#">BUY</a>';
                 else if (status === "pending")
                     buttonHTML += '<a class="btn btn-warning mt-auto disabled" href="#">PENDING</a>';
                 else

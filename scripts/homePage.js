@@ -1,7 +1,10 @@
 $(function() {
+    $('#tagsInput').tagsInput();
+
     const userButton = document.getElementById("userDropdown");
     const logButton = document.getElementById("log");
     const cookie = localStorage.getItem("username");
+
     if (!cookie) {
         userButton.innerHTML = '<i class="bi-person-fill me-1"></i>User';
         logButton.innerText = "Log in";
