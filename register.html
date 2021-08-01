@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>petstore - Register</title>
+
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <!--  Phone number with international area code-->
+  <link rel="stylesheet" href="css/intlTelInput.css">
+
+  <style>
+    .bg{
+      /* https://1freewallpapers.com/bulldog-dog-pattern-art  */
+      background-image: url("img/1600x900_bulldog-dog-pattern-art.jpg");
+      background-repeat: repeat;
+    }
+  </style>
+
+</head>
+
+<body class="bg">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                  </div>
+                  <form class="user" id="form" method="post">
+                    <div class="form-group" id="usercheck">
+                      <input type="text" class="form-control form-control-user" id="exampleInputUsername" placeholder="Username (required)" onblur="userCheck()">
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                    </div>
+                    <div class="form-group row">
+                      <input type="tel" class="form-control form-control-user" id="exampleInputPhone" placeholder="Phone">
+                    </div>
+                    <div class="form-group row" id="pwd_check">
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="password" class="form-control form-control-user pwdcheck" id="exampleInputPassword" placeholder="Password (required)" onblur="pwdCheck()">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="password" class="form-control form-control-user pwdcheck" id="exampleRepeatPassword" placeholder="Repeat Password" onblur="pwdCheck()">
+                      </div>
+                    </div>
+                    <input type="submit" value="Register Account" class="btn btn-primary btn-user btn-block">
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" href="login.html">Already have an account? Login!</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="plugin/jquery/jquery.min.js"></script>
+  <!--  Phone number with international area code-->
+  <script src="plugin/intlTelInput.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="scripts/registerPage.js"></script>
+
+</body>
+
+</html>
