@@ -22,7 +22,7 @@ function logout() {
         success: function (data){
             console.log(data);
             localStorage.removeItem("username");
-            alert("You are logged out!")
+            alert("You have logged out!")
         },
         error: function (error) {
             console.log(error.responseJSON);

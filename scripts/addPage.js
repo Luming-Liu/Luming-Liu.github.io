@@ -5,6 +5,7 @@ const messageTemplate = `<p class="CLASS_WILL_GO_HERE">MESSAGE_WILL_GO_HERE</p>`
 function handleSubmit(event) {
   event.preventDefault();
   const name = document.getElementById('nameInput').value;
+  const category = document.getElementById('categoryInput').value;
   let message = '';
   let isSuccess = true;
   if(name === ''){
@@ -12,11 +13,20 @@ function handleSubmit(event) {
     message = false;
     return;
   }
+  if(category === ''){
+    message = 'The category is required!';
+    message = false;
+    return;
+  }
   fetch(postPetUrl, {
     headers: { 'Content-Type': 'application/json'},
     method: 'POST',
     body: JSON.stringify({
-      name: name
+      name: name,
+      "category": {
+        "id": 0,
+        "name": category
+      }
     })
   }).then((response) => response.json())
     .then((createdPet) => {
@@ -27,11 +37,7 @@ function handleSubmit(event) {
     message = false;
     console.error(e);
   }).finally(() => {
-    let messageHTML = messageTemplate;
-    messageHTML = messageHTML.replace('MESSAGE_WILL_GO_HERE', message);
-    messageHTML = messageHTML.replace('CLASS_WILL_GO_HERE', `message ${isSuccess ? 'success' : 'error'}`);
-
-    document.getElementById('messageBox').innerHTML = messageHTML;
+    alert(message);
   });
 }
 
