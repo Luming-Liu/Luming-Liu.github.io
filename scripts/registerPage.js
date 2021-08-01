@@ -31,6 +31,8 @@ $(function () {
                 data: JSON.stringify(dataArray),
                 success: function (data) {
                     console.log(data);
+                    localStorage.setItem("username", dataJson.username);
+                    localStorage.setItem("password", dataJson.password);
                     alert("You have successfully registered!");
                     window.location.replace("login.html");
                 },
