@@ -48,7 +48,7 @@ function pwdCheck() {
     if (!password) {
         $("#error2").remove();
         $("#pwd_check").append(
-            '<ul class="errorlist" id="error2"><li style="color: red; font-size: 20%">' +
+            '<ul class="errorlist" id="error2"><li style="color: red; font-size: 13px">' +
             'Password can not be empty.</li></ul>'
         );
         return false;
@@ -56,7 +56,7 @@ function pwdCheck() {
     else if (password!==$("#exampleRepeatPassword").val()) {
         $("#error2").remove();
         $("#pwd_check").append(
-            '<ul class="errorlist" id="error2"><li style="color: red; font-size: 20%">' +
+            '<ul class="errorlist" id="error2"><li style="color: red; font-size: 13px">' +
             'Two password inputs do not match.</li></ul>'
         );
         return false;
@@ -69,7 +69,7 @@ function userCheck() {
     if (!username){
         $("#error1").remove();
         $("#usercheck").append(
-            '<ul class="errorlist" id="error1"><li style="color: red; font-size: 20%">' +
+            '<ul class="errorlist" id="error1"><li style="color: red; font-size: 13px">' +
             'Username can not be empty.</li></ul>'
         );
         return false;
@@ -84,7 +84,7 @@ function userCheck() {
             success: function (data){
                 $("#error1").remove();
                 $("#usercheck").append(
-                    '<ul class="errorlist" id="error1"><li style="color: red; font-size: 20%">' +
+                    '<ul class="errorlist" id="error1"><li style="color: red; font-size: 13px">' +
                     'This username has been used.</li></ul>'
                 );
                 flag = false;

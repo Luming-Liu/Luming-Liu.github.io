@@ -7,14 +7,17 @@ $(function () {
                 alert("Password is not correct!");
                 return;
             }
+            const username = $("#exampleInputUsername").val()
+            const password = $("#exampleInputPassword").val()
             $.ajax({
-                url: "https://petstore.swagger.io/v2/user/login?username=" + $("#exampleInputUsername").val()
-                    + '&' + "password=" + $("#exampleInputPassword").val(),
+                url: "https://petstore.swagger.io/v2/user/login?username=" + username
+                    + '&' + "password=" + password,
                 type: "GET",
                 async: false,
                 cache: false,
                 success: function (data) {
                     console.log(data);
+                    localStorage.setItem("username", username);
                     alert("Success!");
                     window.location.replace("index.html");
                 },
@@ -51,7 +54,7 @@ function pwdCheck() {
     if (!password){
         $("#error2").remove();
         $("#pwd_check").append(
-            '<ul class="errorlist" id="error2"><li style="color: red; font-size: 20%">' +
+            '<ul class="errorlist" id="error2"><li style="color: red; font-size: 13px">' +
             'Password can not be empty.</li></ul>'
         );
         return false;
@@ -64,7 +67,7 @@ function userCheck() {
     if (!username){
         $("#error1").remove();
         $("#usercheck").append(
-            '<ul class="errorlist" id="error1"><li style="color: red; font-size: 20%">' +
+            '<ul class="errorlist" id="error1"><li style="color: red; font-size: 13px">' +
             'Username can not be empty.</li></ul>'
         );
         return false;
@@ -82,7 +85,7 @@ function userCheck() {
             error: function (error) {
                 $("#error1").remove();
                 $("#usercheck").append(
-                    '<ul class="errorlist" id="error1"><li style="color: red; font-size: 20%">' +
+                    '<ul class="errorlist" id="error1"><li style="color: red; font-size: 13px">' +
                     "User is not found.</li></ul>"
                 );
                 flag = false;
