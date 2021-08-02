@@ -74,18 +74,32 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#">Fluff-galore</a>
+                <a class="navbar-brand" href="index.html">Fluff-galore</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter" href="#">Add pet</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sale</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#" onclick="requestStatus('available')">Available</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="requestStatus('pending')">Pending</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="requestStatus('sold')">Sold</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="categoryDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">All pets</a>
+                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                                <li><a class="dropdown-item" href="#" onclick="changeCategory('All pets')">All pets</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Dogs')">Dogs</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Cats')">Cats</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Birds')">Birds</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Fish')">Fish</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Reptiles')">Reptiles</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Insects')">Insects</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Other')">Other</a></li>
                             </ul>
                         </li>
                     </ul>

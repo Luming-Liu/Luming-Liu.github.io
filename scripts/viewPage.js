@@ -3,8 +3,11 @@ $(function () {
 });
 
 function requestStatus(status) {
+    document.getElementById("categoryDropdown").innerText = "All pets";
+    document.getElementById("navbarDropdown").innerText = status[0].toUpperCase() + status.slice(1);
+
     const petListObjectTemplate = `
-      <div class="col mb-5" id="PET_ID_WILL_GO_HERE">
+      <div class="col mb-5 pet-display" id="PET_ID_WILL_GO_HERE">PET_CATEGORY_WILL_GO_HERE
         <div class="card h-100">
           <!-- Product image-->
           <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
@@ -39,37 +42,42 @@ function requestStatus(status) {
             let petsHTML = '';
 
             pets.forEach((pet) => {
-                let petTags = '';
-                let buttonHTML = '';
+                if (pet.hasOwnProperty("category")) {
+                    if (pet.category.hasOwnProperty("name")) {
+                        let petTags = '';
+                        let buttonHTML = '';
 
-                if (status === "available")
-                    buttonHTML += '<a class="btn btn-success mt-auto" href="#">BUY</a>';
-                else if (status === "pending")
-                    buttonHTML += '<a class="btn btn-warning mt-auto disabled" href="#">PENDING</a>';
-                else
-                    buttonHTML += '<a class="btn btn-danger mt-auto disabled" href="#">SOLD</a>';
+                        if (status === "available")
+                            buttonHTML += '<a onclick="isLogin()" class="btn btn-success mt-auto" href="#">BUY</a>';
+                        else if (status === "pending")
+                            buttonHTML += '<a class="btn btn-warning mt-auto disabled" href="#">PENDING</a>';
+                        else
+                            buttonHTML += '<a class="btn btn-danger mt-auto disabled" href="#">SOLD</a>';
 
-                if (Array.isArray(pet.tags)) {
-                    pet.tags.forEach((tag) => {
-                        if (
-                            typeof tag === 'object' &&
-                            tag !== null &&
-                            Object.prototype.hasOwnProperty.call(tag, 'name') &&
-                            typeof tag.name === 'string') {
-                            petTags += petListObjectTagTemplate.replace('PET_TAG_WILL_GO_HERE', tag.name)
+                        if (Array.isArray(pet.tags)) {
+                            pet.tags.forEach((tag) => {
+                                if (
+                                    typeof tag === 'object' &&
+                                    tag !== null &&
+                                    Object.prototype.hasOwnProperty.call(tag, 'name') &&
+                                    typeof tag.name === 'string') {
+                                    petTags += petListObjectTagTemplate.replace('PET_TAG_WILL_GO_HERE', tag.name)
+                                }
+                            });
                         }
-                    });
+
+                        let petHTML = petListObjectTemplate;
+                        let categoryHTML = '<p hidden>' + pet.category.name + '</p>'
+                        // We use the regular expression in this case to cover multiple occurrences in text.
+                        petHTML = petHTML.replace(/PET_ID_WILL_GO_HERE/g, pet.id)
+                        petHTML = petHTML.replace('PET_NAME_WILL_GO_HERE', pet.name)
+                        petHTML = petHTML.replace('PET_TAGS_WILL_GO_HERE', petTags)
+                        petHTML = petHTML.replace('BUY_BUTTON_STATUS', buttonHTML)
+                        petHTML = petHTML.replace('PET_CATEGORY_WILL_GO_HERE', categoryHTML)
+
+                        petsHTML += petHTML;
+                    }
                 }
-
-                let petHTML = petListObjectTemplate;
-                // We use the regular expression in this case to cover multiple occurrences in text.
-                petHTML = petHTML.replace(/PET_ID_WILL_GO_HERE/g, pet.id)
-                petHTML = petHTML.replace('PET_NAME_WILL_GO_HERE', pet.name)
-                petHTML = petHTML.replace('PET_TAGS_WILL_GO_HERE', petTags)
-                petHTML = petHTML.replace('BUY_BUTTON_STATUS', buttonHTML)
-
-                petsHTML += petHTML;
-
             })
 
             document.getElementById('viewPage').innerHTML = petsHTML;

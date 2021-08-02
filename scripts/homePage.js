@@ -16,6 +16,13 @@ $(function() {
     }
 })
 
+// You can give this function an onclick event to check if the user is logged in.
+function isLogin() {
+    if (!localStorage.getItem("username")) {
+        window.location.replace("login.html");
+    }
+}
+
 function logout() {
     $.ajax({
         url: "https://petstore.swagger.io/v2/user/logout",
@@ -30,6 +37,18 @@ function logout() {
         error: function (error) {
             console.log(error.responseJSON);
             alert("Crashed!")
+        }
+    });
+}
+
+function changeCategory(category) {
+    document.getElementById("categoryDropdown").innerText = category;
+    let allPets = $(".pet-display");
+    allPets.show();
+    allPets.each(function () {
+        let categoryName = $(this).children("p")[0].innerText;
+        if (category !== categoryName && category !== "All pets") {
+            $(this).hide()
         }
     });
 }

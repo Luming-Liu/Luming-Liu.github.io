@@ -3,7 +3,10 @@ const postPetUrl = 'https://petstore.swagger.io/v2/pet'
 const messageTemplate = `<p id="msg" style="color: red;font-size: small" class="CLASS_WILL_GO_HERE">MESSAGE_WILL_GO_HERE</p>`;
 
 function deleteMsg() {
-  document.getElementById('msg').remove();
+  let msg = document.getElementById('msg');
+  if (msg) {
+    msg.remove();
+  }
 }
 
 function handleSubmit(event) {
