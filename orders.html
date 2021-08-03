@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Fluff-galore - Homepage</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Fluff-galore</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#" onclick="goBack()">
+                                <i class="bi-arrow-left-circle-fill me-1"></i>Back
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <button class="btn btn-light" onclick="openOrdersCenter()">
+                            <i class="bi-pin-angle-fill me-1"></i>
+                            Orders
+                            <span id="orderQuantity" class="badge bg-dark text-white ms-1 rounded-pill"></span>
+                        </button>
+                    </div>
+                    <div class="d-flex nav-item dropdown">
+                        <button class="btn btn-light" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-person-fill me-1"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <li id="profile"><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a id="log" class="dropdown-item" href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Product section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Orders</th>
+                                <th scope="col">Order Id</th>
+                                <th scope="col">Pet Name</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Ship Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Operations</th>
+                            </tr>
+                            </thead>
+                            <tbody id="orderTable">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+        </footer>
+        <!-- Jquery core JavaScript-->
+        <script type="text/javascript" src="plugin/jquery/jquery.min.js"></script>
+        <!-- Tagsinput plugin JS-->
+        <script src="plugin/jquery.tagsinput.js"></script>
+        <!-- Bootstrap core JS-->
+        <script src="plugin/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="scripts/homePage.js"></script>
+        <script src="scripts/ordersPage.js"></script>
+    </body>
+</html>
+

@@ -1,7 +1,8 @@
 $(function () {
     document.getElementById("exampleInputUsername").value = localStorage.getItem("username");
     document.getElementById("exampleInputPassword").value = localStorage.getItem("password");
-    localStorage.clear();
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
 
     $('#form').on('submit', function (e) {
         e.preventDefault();

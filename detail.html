@@ -14,21 +14,14 @@
         <link href="css/styles.css" rel="stylesheet" />
         <!-- Tagsinput plugin CSS-->
         <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.css" />
-        <style>
-            .bg{
-                /* https://1freewallpapers.com/pattern-animals-new-year-funny-art  */
-                background-image: url("img/1600x900_pattern-animals-new-year-funny-art.jpg");
-                background-repeat: repeat;
-            }
-        </style>
     </head>
     <body>
-        <!-- Modal -->
+        <!-- Modal for editing pet -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Add pet</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit pet</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" onclick="deleteMsg()"></button>
                     </div>
                     <form id="addPetForm" class="user">
@@ -57,7 +50,34 @@
                         </div>
                         <div class="modal-footer justify-content-center">
                             <button type="button" class="btn btn-outline-dark" data-dismiss="modal" onclick="deleteMsg()">Cancel</button>
-                            <button type="submit" class="btn btn-outline-primary btn-user btn-block justify-content-center">Add</button>
+                            <button type="submit" class="btn btn-outline-primary btn-user btn-block justify-content-center">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for uploading photo -->
+        <div class="modal fade" id="imageUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Upload pet photo</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" onclick="imageUpload('hide')"></button>
+                    </div>
+                    <form id="imageForm" class="user" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group row-cols-5">
+                                <label class="col-sm-3 col-form-label">Additional info</label>
+                                <input type="name" class="form-control" id="infoInput">
+                            </div><br>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div><br>
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn btn-outline-dark" data-dismiss="modal" onclick="imageUpload('hide')">Cancel</button>
+                            <button type="submit" class="btn btn-outline-primary btn-user btn-block justify-content-center">Save</button>
                         </div>
                     </form>
                 </div>
@@ -70,31 +90,11 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">
-                            <i class="bi-house-fill me-1"></i>Home</a></li>
-                        <li class="nav-item"><a class="nav-link active" data-toggle="modal" data-target="#exampleModalCenter" href="#">Add pet</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#" onclick="requestStatus('available')">Available</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="requestStatus('pending')">Pending</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="requestStatus('sold')">Sold</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" id="categoryDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">All pets</a>
-                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                                <li><a class="dropdown-item" href="#" onclick="changeCategory('All pets')">All pets</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Dogs')">Dogs</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Cats')">Cats</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Birds')">Birds</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Fish')">Fish</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Reptiles')">Reptiles</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Insects')">Insects</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="changeCategory('Other')">Other</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#" onclick="goBack()">
+                                <i class="bi-arrow-left-circle-fill me-1"></i>Back
+                            </a></li>
+                        <li class="nav-item"><a class="nav-link active" data-toggle="modal" data-target="#exampleModalCenter" href="#">Edit pet</a></li>
                     </ul>
                     <div class="d-flex">
                         <button class="btn btn-light" onclick="openOrdersCenter()">
@@ -115,20 +115,23 @@
                 </div>
             </div>
         </nav>
-        <!-- Header-->
-        <header class="bg-dark py-5 bg">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0"></p>
-                </div>
-            </div>
-        </header>
-        <!-- Section-->
+        <!-- Product section-->
         <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="viewPage">
-
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img onclick="imageUpload('show')" class="card-img-top mb-5 mb-md-0" style="cursor: pointer" src="https://dummyimage.com/600x400/dee2e6/6c757d.jpg" alt="..." /></div>
+                    <div class="col-md-6">
+                        <div class="small mb-2">CATEGORY: <h7 id="petCategory"></h7></div>
+                        <h1 class="display-5 fw-bolder" id="petName"></h1>
+                        <p class="lead" id="petTags"></p>
+                        <div class="d-flex">
+                            <input class="form-control text-center me-3" id="inputQuantity" onkeyup="value=checkQuantity(value)?value:''" type="text" value="1" style="max-width: 3rem">
+                            <button id="petStatus" class="btn btn-outline-success flex-shrink-0" type="button" onclick="placeOrder()">
+                                <i class="bi-cart-fill me-1"></i>
+                                Buy now
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -145,7 +148,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="scripts/homePage.js"></script>
-        <script src="scripts/viewPage.js"></script>
         <script src="scripts/addPage.js"></script>
+        <script src="scripts/detailPage.js"></script>
     </body>
 </html>

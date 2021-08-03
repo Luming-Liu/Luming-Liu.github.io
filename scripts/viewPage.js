@@ -10,12 +10,12 @@ function requestStatus(status) {
       <div class="col mb-5 pet-display" id="PET_ID_WILL_GO_HERE">PET_CATEGORY_WILL_GO_HERE
         <div class="card h-100">
           <!-- Product image-->
-          <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+          <img class="card-img-top" src="img/pet_exampleIMAGE_NUM.jpeg" alt="..." />
           <button class="btn" style="position: absolute" onClick="handleDelete(PET_ID_WILL_GO_HERE)">
             <i class="bi-trash-fill me-1"></i>
           </button>
           <!-- Product details-->
-          <div class="card-body p-4">
+          <div class="card-body p-4" onclick="openDetail(this)" style="cursor: pointer">
             <div class="text-center">
             <!-- Product name-->
             <h5 class="fw-bolder">PET_NAME_WILL_GO_HERE</h5>
@@ -24,9 +24,7 @@ function requestStatus(status) {
             </div>
           </div>
           <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center">BUY_BUTTON_STATUS</div>
-          </div>
+            BUY_BUTTON_STATUS
         </div>
       </div>
     `;
@@ -44,14 +42,13 @@ function requestStatus(status) {
             pets.forEach((pet) => {
                 if (pet.hasOwnProperty("category")) {
                     if (pet.category.hasOwnProperty("name")) {
+
                         let petTags = '';
                         let buttonHTML = '';
 
-                        if (status === "available")
-                            buttonHTML += '<a onclick="isLogin()" class="btn btn-success mt-auto" href="#">BUY</a>';
-                        else if (status === "pending")
+                        if (status === "pending")
                             buttonHTML += '<a class="btn btn-warning mt-auto disabled" href="#">PENDING</a>';
-                        else
+                        else if (status === "sold")
                             buttonHTML += '<a class="btn btn-danger mt-auto disabled" href="#">SOLD</a>';
 
                         if (Array.isArray(pet.tags)) {
@@ -74,6 +71,9 @@ function requestStatus(status) {
                         petHTML = petHTML.replace('PET_TAGS_WILL_GO_HERE', petTags)
                         petHTML = petHTML.replace('BUY_BUTTON_STATUS', buttonHTML)
                         petHTML = petHTML.replace('PET_CATEGORY_WILL_GO_HERE', categoryHTML)
+                        // Random images
+                        let imageNum = Math.floor(Math.random()*10).toString();
+                        petHTML = petHTML.replace('IMAGE_NUM', imageNum)
 
                         petsHTML += petHTML;
                     }

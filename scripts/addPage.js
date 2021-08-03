@@ -14,7 +14,6 @@ function handleSubmit(event) {
   const name = document.getElementById('nameInput').value;
   const category = document.getElementById("categoryInput").value;
   const tags = document.getElementById('tagsInput').value;
-  const status = document.getElementById("statusInput").value;
 
   let tagsList = tags.split(',');
   let tagsArr = [];
@@ -40,11 +39,7 @@ function handleSubmit(event) {
     message = false;
     return;
   }
-  if(status === ''){
-    message = 'The status is required!';
-    message = false;
-    return;
-  }
+
   fetch(postPetUrl, {
     headers: { 'Content-Type': 'application/json'},
     method: 'POST',
@@ -56,7 +51,7 @@ function handleSubmit(event) {
         "name": category
       },
       "tags": tagsArr,
-      "status": status
+      "status": "available"
     })
   }).then((response) => response.json())
     .then((createdPet) => {
