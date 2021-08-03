@@ -14,8 +14,25 @@
         <link href="css/styles.css" rel="stylesheet" />
         <!-- Tagsinput plugin CSS-->
         <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.css" />
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+            .content {
+                min-height: 100%;
+            }
+            .content-inside {
+                padding-bottom: 50px;
+            }
+            footer {
+                margin-top: -50px;
+            }
+        </style>
     </head>
     <body>
+    <div class="content">
+        <div class="content-inside">
         <!-- Modal for editing pet -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -135,8 +152,10 @@
                 </div>
             </div>
         </section>
+        </div>
+    </div>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
+        <footer class="py-3 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
         </footer>
         <!-- Jquery core JavaScript-->

@@ -15,14 +15,24 @@
         <!-- Tagsinput plugin CSS-->
         <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.css" />
         <style>
-            .bg{
-                /* https://1freewallpapers.com/pattern-animals-new-year-funny-art  */
-                background-image: url("img/1600x900_pattern-animals-new-year-funny-art.jpg");
-                background-repeat: repeat;
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+            .content {
+                min-height: 100%;
+            }
+            .content-inside {
+                padding-bottom: 50px;
+            }
+            footer {
+                margin-top: -50px;
             }
         </style>
     </head>
     <body>
+    <div class="content">
+        <div class="content-inside">
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -116,24 +126,58 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5 bg">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0"></p>
+        <header>
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/1600x350_pattern-animals-new-year-funny-art.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1>Shop in style</h1>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/1600x350_pattern-animals-new-year-funny-art.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1>Shop in style</h1>
+                            <p>Some representative placeholder content for the second slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/1600x350_pattern-animals-new-year-funny-art.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1>Shop in style</h1>
+                            <p>Some representative placeholder content for the third slide.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </header>
         <!-- Section-->
-        <section class="py-5">
+        <section class="py-3">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="viewPage">
 
                 </div>
             </div>
         </section>
+        </div>
+    </div>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
+        <footer class="py-3 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
         </footer>
         <!-- Jquery core JavaScript-->
