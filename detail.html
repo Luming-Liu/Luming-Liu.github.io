@@ -11,7 +11,9 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/sb-admin-2.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/bs4pop.css" rel="stylesheet" />
         <!-- Tagsinput plugin CSS-->
         <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.css" />
         <style>
@@ -108,10 +110,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" onclick="goBack()">
+                            <a class="nav-link active" aria-current="page" href="#" onclick="javascript: window.history.go(-1);return false;">
                                 <i class="bi-arrow-left-circle-fill me-1"></i>Back
                             </a></li>
-                        <li class="nav-item"><a class="nav-link active" data-toggle="modal" data-target="#exampleModalCenter" href="#">Edit pet</a></li>
+                        <li class="nav-item"><a class="nav-link active" data-toggle="modal" data-target="#exampleModalCenter" href="#" onclick="isLogin()">Edit pet</a></li>
                     </ul>
                     <div class="d-flex">
                         <button class="btn btn-light" onclick="openOrdersCenter()">
@@ -125,7 +127,7 @@
                             <i class="bi-person-fill me-1"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                            <li id="profile"><a class="dropdown-item" href="#">Profile</a></li>
+                            <li id="profile"><a class="dropdown-item" href="profile.html">Profile</a></li>
                             <li><a id="log" class="dropdown-item" href="#"></a></li>
                         </ul>
                     </div>
@@ -165,6 +167,7 @@
         <!-- Bootstrap core JS-->
         <script src="plugin/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="plugin/bs4pop.js"></script>
         <!-- Core theme JS-->
         <script src="scripts/homePage.js"></script>
         <script src="scripts/addPage.js"></script>

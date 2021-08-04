@@ -78,24 +78,34 @@ function userCheck() {
     }
     else {
         let flag = null;
-        $.ajax({
-            url: "https://petstore.swagger.io/v2/user/" + username,
-            type: "GET",
-            async: false,
-            cache: false,
-            success: function (data){
-                $("#error1").remove();
-                $("#usercheck").append(
-                    '<ul class="errorlist" id="error1"><li style="color: red; font-size: 13px">' +
-                    'This username has been used.</li></ul>'
-                );
-                flag = false;
-            },
-            error: function (error) {
-                console.log(error.responseJSON);
-                flag = true;
-            }
-        });
+        if (username === "username") {
+            $("#error1").remove();
+            $("#usercheck").append(
+                '<ul class="errorlist" id="error1"><li style="color: red; font-size: 13px">' +
+                'Username is invalid.</li></ul>'
+            );
+            flag = false;
+        }
+        else {
+            $.ajax({
+                url: "https://petstore.swagger.io/v2/user/" + username,
+                type: "GET",
+                async: false,
+                cache: false,
+                success: function (data) {
+                    $("#error1").remove();
+                    $("#usercheck").append(
+                        '<ul class="errorlist" id="error1"><li style="color: red; font-size: 13px">' +
+                        'This username has been used.</li></ul>'
+                    );
+                    flag = false;
+                },
+                error: function (error) {
+                    console.log(error.responseJSON);
+                    flag = true;
+                }
+            });
+        }
         return flag;
     }
 }

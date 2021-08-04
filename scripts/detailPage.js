@@ -21,10 +21,6 @@ function imageUpload(option) {
     $('#imageUpload').modal(option);
 }
 
-function goBack() {
-    history.go(-1);
-}
-
 function getPet(id) {
     $.ajax({
         url: "https://petstore.swagger.io/v2/pet/" + id,
@@ -54,30 +50,31 @@ function checkQuantity(num) {
 function placeOrder() {
     let user = localStorage.getItem("username");
     if (user) {
-        let date = new Date().getTime()
-        let obj = {};
-        obj = {
-            id: date,
-            petId: parseInt(getUrlParam("id")),
-            petName: getUrlParam("name"),
-            petQuantity: parseInt($("#inputQuantity").val()),
-            // Delay for 7 days(432000000 milliseconds) as shipping time.
-            shipDate: new Date(date + 432000000).Format('yy-MM-dd hh:mm:ss'),
-            status: "placed"
+        if (confirm("Are you sure to purchase?")) {
+            let date = new Date().getTime()
+            let obj = {};
+            obj = {
+                id: date,
+                petId: parseInt(getUrlParam("id")),
+                petName: getUrlParam("name"),
+                petQuantity: parseInt($("#inputQuantity").val()),
+                // Delay for 7 days(432000000 milliseconds) as shipping time.
+                shipDate: new Date(date + 432000000).Format('yy-MM-dd hh:mm:ss'),
+                status: "placed"
+            }
+            let orders = localStorage.getItem(user);
+            if (orders) {
+                let orderArr = JSON.parse(orders);
+                orderArr.push(obj);
+                localStorage.setItem(user, JSON.stringify(orderArr));
+            } else {
+                let orderArr = [];
+                orderArr.push(obj);
+                localStorage.setItem(user, JSON.stringify(orderArr));
+            }
+            bs4pop.notice("Purchase success! The order id is " + obj.id + '.', {type: 'success'});
+            displayOrderQuantity()
         }
-        let orders = localStorage.getItem(user);
-        if (orders) {
-            let orderArr = JSON.parse(orders);
-            orderArr.push(obj);
-            localStorage.setItem(user, JSON.stringify(orderArr));
-        }
-        else {
-            let orderArr = [];
-            orderArr.push(obj);
-            localStorage.setItem(user, JSON.stringify(orderArr));
-        }
-        alert("Purchase success! The order id is " + obj.id + '.');
-        displayOrderQuantity()
     }
     else isLogin()
 }

@@ -70,7 +70,6 @@ function openDetail(element) {
 }
 
 function openOrdersCenter() {
-    console.log("hhh")
     window.location = "orders.html";
 }
 
@@ -85,4 +84,20 @@ function displayOrderQuantity() {
         else document.getElementById("orderQuantity").innerText = '0'
     }
     else document.getElementById("orderQuantity").innerText = '0';
+}
+
+function queryStatusQuantity() {
+    $.ajax({
+        url: "https://petstore.swagger.io/v2/store/inventory",
+        type: "GET",
+        success: function (data){
+            console.log(data);
+            document.getElementById("availableQuantity").innerText = data["available"];
+            document.getElementById("pendingQuantity").innerText = data["pending"];
+            document.getElementById("soldQuantity").innerText = data["sold"];
+        },
+        error: function (error) {
+            console.log(error.responseJSON);
+        }
+    });
 }

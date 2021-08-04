@@ -8,7 +8,7 @@ $(function () {
             <td>SHIP_DATE</td>
             <td>STATUS</td>
             <td><button class="btn btn-outline-success" onClick="completeOrder(ORDER_ID)">Confirm receipt</button>
-                <button class="btn btn-outline-danger" onClick="deleteOrder(ORDER_ID)">Delete order</button>
+                <button class="btn btn-outline-danger" onClick="deleteOrder(ORDER_ID)">Cancel order</button>
             </td>
         </tr>
     `;
@@ -33,10 +33,6 @@ $(function () {
         document.getElementById("orderTable").innerHTML = ordersHTML;
     }
 });
-
-function goBack() {
-    history.go(-1);
-}
 
 function isExistOrders() {
     let user = localStorage.getItem("username");
