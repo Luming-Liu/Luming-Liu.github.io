@@ -101,3 +101,11 @@ function queryStatusQuantity() {
         }
     });
 }
+
+function isAdminLogin() {
+    let user = localStorage.getItem("username")
+    if (user) {
+        return user === "admin";
+    }
+    else return false;
+}
