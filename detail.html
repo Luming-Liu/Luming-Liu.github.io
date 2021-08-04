@@ -66,10 +66,18 @@
                                 <label class="col-sm-3 col-form-label">Tags</label>
                                 <input type="tags" class="form-control" id="tagsInput">
                             </div>
+                            <div class="form-group row-cols-5">
+                                <label class="col-sm-3 col-form-label">Sale status</label>
+                                <select type="status" class="form-control" id="statusInput">
+                                    <option selected>available</option>
+                                    <option value="pending">pending</option>
+                                    <option value="sold">sold</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer justify-content-center">
                             <button type="button" class="btn btn-outline-dark" data-dismiss="modal" onclick="deleteMsg()">Cancel</button>
-                            <button type="submit" class="btn btn-outline-primary btn-user btn-block justify-content-center">Save</button>
+                            <button type="submit" class="btn btn-outline-primary">Save</button>
                         </div>
                     </form>
                 </div>
@@ -83,20 +91,18 @@
                         <h5 class="modal-title">Upload pet photo</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" onclick="imageUpload('hide')"></button>
                     </div>
-                    <form id="imageForm" class="user" enctype="multipart/form-data">
+                    <form id="imageForm" method="post" class="user" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="form-group row-cols-5">
-                                <label class="col-sm-3 col-form-label">Additional info</label>
-                                <input type="name" class="form-control" id="infoInput">
+                                <label for="infoInput"></label><input type="text" class="form-control" id="infoInput" placeholder="Additional info">
                             </div><br>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                <input type="file" class="form-control" id="imageFile" aria-label="Upload">
                             </div>
                         </div><br>
                         <div class="modal-footer justify-content-center">
                             <button type="button" class="btn btn-outline-dark" data-dismiss="modal" onclick="imageUpload('hide')">Cancel</button>
-                            <button type="submit" class="btn btn-outline-primary btn-user btn-block justify-content-center">Save</button>
+                            <button type="submit" class="btn btn-outline-primary" id="submitImage">Save</button>
                         </div>
                     </form>
                 </div>

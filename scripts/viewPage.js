@@ -90,25 +90,29 @@ function requestStatus(status) {
 const deletePetUrl = 'https://petstore.swagger.io/v2/pet/';
 
 function handleDelete(id) {
-  const pathForDeleteRequest = deletePetUrl + id;
-  fetch(pathForDeleteRequest, {
-    headers: {'Content-Type': 'application/json'},
-    method: 'DELETE'
-  })
-    .then(response => {
-      if(response.status === 404){
-        alert('The pet could not be found!')
-      } else {
-        response.json()
-          .then(() => {
-            alert('Pet deleted!')
-            document.getElementById(id).remove();
-          });
-      }
-    })
-    .catch((error) => {
-      if(error.message){
-        alert(error.message);
-      }
-    })
+    if (isAdminLogin()) {
+        const pathForDeleteRequest = deletePetUrl + id;
+        fetch(pathForDeleteRequest, {
+            headers: {'Content-Type': 'application/json'},
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.status === 404) {
+                    alert('The pet could not be found!')
+                } else {
+                    response.json()
+                        .then(() => {
+                            alert('Pet deleted!')
+                            document.getElementById(id).remove();
+                        });
+                }
+            })
+            .catch((error) => {
+                if (error.message) {
+                    alert(error.message);
+                }
+            })
+    }
+    else
+        alert("No permission! Please login as admin.");
 }

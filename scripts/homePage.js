@@ -76,14 +76,30 @@ function openOrdersCenter() {
 function displayOrderQuantity() {
     let user = localStorage.getItem("username");
     if (user) {
-        let orders = localStorage.getItem(user);
-        if (orders) {
-            let orderArr = JSON.parse(localStorage.getItem(user));
-            document.getElementById("orderQuantity").innerText = orderArr.length;
+        let orderNum = 0;
+        if (user === "admin") {
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                if (key !== "username") {
+                    let orders = localStorage.getItem(key);
+                    if (orders) {
+                        let orderArr = JSON.parse(localStorage.getItem(key));
+                        orderNum += orderArr.length;
+                    }
+                }
+            }
         }
-        else document.getElementById("orderQuantity").innerText = '0'
+        else {
+            let orders = localStorage.getItem(user);
+            if (orders) {
+                let orderArr = JSON.parse(localStorage.getItem(user));
+                orderNum = orderArr.length;
+            }
+        }
+        document.getElementById("orderQuantity").innerText = orderNum.toString();
     }
-    else document.getElementById("orderQuantity").innerText = '0';
+    else
+        document.getElementById("orderQuantity").innerText = '0';
 }
 
 function queryStatusQuantity() {

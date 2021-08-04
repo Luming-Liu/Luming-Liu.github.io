@@ -1,12 +1,22 @@
+document.getElementById('imageForm').addEventListener('submit', submitImage, true);
+
 $(function () {
-    // let petId = getUrlParam("id")
+    if (isAdminLogin()) {
+        $("#petStatus").attr("disabled", true);
+    }
     let petName = getUrlParam("name");
     let petTags = getUrlParam("tags");
     let petCategory = getUrlParam("category");
     let petStatus = getUrlParam("status");
+
     document.getElementById("petName").innerText = petName;
     document.getElementById("petTags").innerText = petTags;
     document.getElementById("petCategory").innerText = petCategory;
+
+    $("#nameInput").val(petName);
+    $("#categoryInput").val(petCategory);
+    $("#statusInput").val(petStatus);
+
     if (petStatus === "pending") {
         $("#petStatus").replaceWith('<button class="btn btn-warning disabled flex-shrink-0" type="button">' +
             '<i class="bi-cart-fill me-1"></i>Pending</button>');
@@ -16,6 +26,41 @@ $(function () {
             '<i class="bi-cart-fill me-1"></i>Sold</button>');
     }
 })
+
+function submitImage(event) {
+    if (isAdminLogin()) {
+        event.preventDefault();
+        let formData = new FormData();
+        let info = $("#infoInput").val();
+        let file = $("#imageFile").prop("files")[0];
+        formData.append('additionalMetadata', info);
+        formData.append('file', file);
+        console.log(getUrlParam("id"))
+
+        $.ajax({
+            url: 'https://petstore.swagger.io/v2/pet/' + getUrlParam("id") + '/uploadImage',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                alert("Upload success!");
+                $('#imageUpload').modal('hide');
+            },
+            error: function (error) {
+                console.log(error.responseJSON);
+                alert("Upload failed!");
+            }
+        })
+    }
+    else {
+        alert("No permission! Please login as admin.");
+        event.preventDefault();
+        return;
+    }
+}
 
 function imageUpload(option) {
     $('#imageUpload').modal(option);
