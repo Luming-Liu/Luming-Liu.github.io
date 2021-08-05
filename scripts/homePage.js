@@ -1,6 +1,7 @@
 $(function() {
     $('#tagsInput').tagsInput();
     displayOrderQuantity();
+    localStorage.clear();
 
     const userButton = document.getElementById("userDropdown");
     const logButton = document.getElementById("log");
