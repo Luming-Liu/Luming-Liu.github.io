@@ -93,7 +93,7 @@ function checkQuantity(num) {
 }
 
 function placeOrder() {
-    let user = localStorage.getItem("username");
+    let user = Storage.get("username");
     if (user) {
         if (confirm("Are you sure to purchase?")) {
             let date = new Date().getTime()
@@ -107,15 +107,14 @@ function placeOrder() {
                 shipDate: new Date(date + 432000000).Format('yy-MM-dd hh:mm:ss'),
                 status: "placed"
             }
-            let orders = localStorage.getItem(user);
+            let orders = Storage.get(user);
             if (orders) {
-                let orderArr = JSON.parse(orders);
-                orderArr.push(obj);
-                localStorage.setItem(user, JSON.stringify(orderArr));
+                orders.push(obj);
+                Storage.set(user, orders, 21600);
             } else {
                 let orderArr = [];
                 orderArr.push(obj);
-                localStorage.setItem(user, JSON.stringify(orderArr));
+                Storage.set(user, orderArr, 21600);
             }
             bs4pop.notice("Purchase success! The order id is " + obj.id + '.', {type: 'success'});
             displayOrderQuantity()

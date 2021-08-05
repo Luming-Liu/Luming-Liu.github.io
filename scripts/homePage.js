@@ -5,7 +5,7 @@ $(function() {
     const userButton = document.getElementById("userDropdown");
     const logButton = document.getElementById("log");
     const profileButton = document.getElementById("profile");
-    const cookie = localStorage.getItem("username");
+    const cookie = Storage.get("username");
 
     if (!cookie) {
         if (profileButton) profileButton.remove();
@@ -23,7 +23,7 @@ $(function() {
 
 // You can give this function an onclick event to check if the user is logged in.
 function isLogin() {
-    if (!localStorage.getItem("username")) {
+    if (!Storage.get("username")) {
         alert("Please login first!");
         window.location.replace("login.html");
     }
@@ -37,7 +37,7 @@ function logout() {
         cache: false,
         success: function (data){
             console.log(data);
-            localStorage.removeItem("username");
+            Storage.remove("username");
             alert("You have logged out!")
         },
         error: function (error) {
@@ -74,25 +74,25 @@ function openOrdersCenter() {
 }
 
 function displayOrderQuantity() {
-    let user = localStorage.getItem("username");
+    let user = Storage.get("username");
     if (user) {
         let orderNum = 0;
         if (user === "admin") {
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i);
                 if (key !== "username") {
-                    let orders = localStorage.getItem(key);
+                    let orders = Storage.get(key);
                     if (orders) {
-                        let orderArr = JSON.parse(localStorage.getItem(key));
+                        let orderArr = Storage.get(key);
                         orderNum += orderArr.length;
                     }
                 }
             }
         }
         else {
-            let orders = localStorage.getItem(user);
+            let orders = Storage.get(user);
             if (orders) {
-                let orderArr = JSON.parse(localStorage.getItem(user));
+                let orderArr = Storage.get(user);
                 orderNum = orderArr.length;
             }
         }
@@ -119,7 +119,7 @@ function queryStatusQuantity() {
 }
 
 function isAdminLogin() {
-    let user = localStorage.getItem("username")
+    let user = Storage.get("username")
     if (user) {
         return user === "admin";
     }

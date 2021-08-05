@@ -9,7 +9,7 @@ $(function () {
         e.preventDefault();
 
         if (pwdCheck()) {
-            let username = localStorage.getItem("username");
+            let username = Storage.get("username");
             let dataJson = {
                 "id": 0,
                 "username": username,

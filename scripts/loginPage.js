@@ -1,8 +1,8 @@
 $(function () {
-    document.getElementById("exampleInputUsername").value = localStorage.getItem("username");
-    document.getElementById("exampleInputPassword").value = localStorage.getItem("password");
-    localStorage.removeItem("username");
-    localStorage.removeItem("password");
+    document.getElementById("exampleInputUsername").value = Storage.get("username");
+    document.getElementById("exampleInputPassword").value = Storage.get("password");
+    Storage.remove("username");
+    Storage.remove("password");
 
     $('#form').on('submit', function (e) {
         e.preventDefault();
@@ -29,7 +29,7 @@ $(function () {
                 cache: false,
                 success: function (data) {
                     console.log(data);
-                    localStorage.setItem("username", username);
+                    Storage.set("username", username, 21600);
                     bs4pop.notice('Login success!', {type: 'success'});
                     setTimeout('window.location.replace("index.html")',1000);
                 },

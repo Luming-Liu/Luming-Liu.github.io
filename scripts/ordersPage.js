@@ -19,8 +19,8 @@ $(function () {
     }
     else {
         if (isExistOrdersForUser()) {
-            let username = localStorage.getItem("username");
-            let ordersData = JSON.parse(localStorage.getItem(username));
+            let username = Storage.get("username");
+            let ordersData = Storage.get(username);
             let count = 1;
             let ordersHTML = '';
 
@@ -60,7 +60,7 @@ function adminRenderTable(templete) {
     for (let i=0; i<localStorage.length; i++) {
         let key = localStorage.key(i);
         if (key !== "username") {
-            let ordersData = JSON.parse(localStorage.getItem(key));
+            let ordersData = Storage.get(key);
 
             ordersData.forEach((order) => {
                 let orderHTML = templete;
@@ -93,9 +93,9 @@ function adminRenderTable(templete) {
 }
 
 function isExistOrdersForUser() {
-    let user = localStorage.getItem("username");
+    let user = Storage.get("username");
     if (user) {
-        let orders = localStorage.getItem(user);
+        let orders = Storage.get(user);
         return !!orders;
     } else return false;
 }
@@ -105,13 +105,13 @@ function shipOrder(id) {
         for (let i = 0; i < localStorage.length; i++) {
             let key = localStorage.key(i);
             if (key !== "username") {
-                let ordersData = JSON.parse(localStorage.getItem(key));
+                let ordersData = Storage.get(key);
                 for (let j = 0; j < ordersData.length; j++) {
                     if (id === ordersData[j].id) {
                         ordersData[j].status = "shipping";
                     }
                 }
-                localStorage.setItem(key, JSON.stringify(ordersData));
+                Storage.set(key, ordersData, 21600);
             }
         }
         adminRenderTable(ordersTableTemplate);
@@ -122,12 +122,12 @@ function shipOrder(id) {
 function completeOrder(id) {
     if (confirm("Please confirm once again that you have received the package.")) {
         if (isExistOrdersForUser()) {
-            let user = localStorage.getItem("username");
-            let ordersData = JSON.parse(localStorage.getItem(user));
+            let user = Storage.get("username");
+            let ordersData = Storage.get(user);
             ordersData = ordersData.filter((item) => {
                 return item.id !== id;
             });
-            localStorage.setItem(user, JSON.stringify(ordersData));
+            Storage.set(user, ordersData, 21600);
             document.getElementById(id).remove();
             displayOrderQuantity();
             bs4pop.notice('Order ' + id + ' completed!',{type:'success'})
@@ -140,11 +140,11 @@ function cancelOrder(id) {
         for (let i = 0; i < localStorage.length; i++) {
             let key = localStorage.key(i);
             if (key !== "username") {
-                let ordersData = JSON.parse(localStorage.getItem(key));
+                let ordersData = Storage.get(key);
                 ordersData = ordersData.filter((item) => {
                     return item.id !== id;
                 });
-                localStorage.setItem(key, JSON.stringify(ordersData));
+                Storage.set(key, ordersData, 21600);
             }
         }
         document.getElementById(id).remove();
