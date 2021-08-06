@@ -8,11 +8,13 @@ $(function () {
     let petTags = getUrlParam("tags");
     let petCategory = getUrlParam("category");
     let petStatus = getUrlParam("status");
+    let petImage = getUrlParam("image");
 
     document.getElementById("petName").innerText = petName;
     document.getElementById("petTags").innerText = petTags;
     document.getElementById("petCategory").innerText = petCategory;
 
+    $("#detailImage").attr('src', petImage);
     $("#nameInput").val(petName);
     $("#categoryInput").val(petCategory);
     $("#statusInput").val(petStatus);
@@ -35,7 +37,6 @@ function submitImage(event) {
         let file = $("#imageFile").prop("files")[0];
         formData.append('additionalMetadata', info);
         formData.append('file', file);
-        console.log(getUrlParam("id"))
 
         $.ajax({
             url: 'https://petstore.swagger.io/v2/pet/' + getUrlParam("id") + '/uploadImage',

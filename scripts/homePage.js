@@ -64,9 +64,10 @@ function openDetail(element) {
     let petName = $(element).children().children("h5")[0].innerText;
     let petTags = $(element).children().children("span")[0].innerText;
     let petCategory = $(element).parent().parent().children("p")[0].innerText;
+    let petImage = $(element).siblings("img").attr("src");
     let petStatus = $("#navbarDropdown")[0].innerText.toLowerCase();
     window.location = "detail.html?id=" + petId.toString() + '&name=' + petName
-        + '&tags=' + petTags + '&category=' + petCategory + '&status=' + petStatus;
+        + '&tags=' + petTags + '&category=' + petCategory + '&status=' + petStatus + '&image=' + petImage;
 }
 
 function openOrdersCenter() {
