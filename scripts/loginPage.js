@@ -1,4 +1,12 @@
 $(function () {
+    $("#getTrouble").click(function () {
+        let element = $("#collapseExample");
+        if (element.hasClass('show'))
+            element.removeClass('show');
+        else
+            element.addClass('show');
+    })
+
     document.getElementById("exampleInputUsername").value = Storage.get("username");
     document.getElementById("exampleInputPassword").value = Storage.get("password");
     Storage.remove("username");
@@ -41,6 +49,25 @@ $(function () {
         }
     });
 });
+
+function getAdminPassword() {
+    let element = $("#pwdHint");
+    if (element) element.remove();
+    $.ajax({
+        url: "https://petstore.swagger.io/v2/user/admin",
+        type: "GET",
+        async: false,
+        cache: false,
+        success: function (data){
+            $("#passwordHint").after("<p id='pwdHint'>The <b>admin</b>'s password is " +
+                "<b style='color: red'>" + data.password + "</b></p>")
+        },
+        error: function (error) {
+            $("#passwordHint").after("<p><b id='pwdHint' style='color: red'>" +
+                error.responseJSON.message + ".</b></p>")
+        }
+    });
+}
 
 function isPwdRight() {
     const username = $("#exampleInputUsername").val();
