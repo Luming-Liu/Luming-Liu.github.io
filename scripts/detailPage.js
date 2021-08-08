@@ -4,6 +4,7 @@ $(function () {
     if (isAdminLogin()) {
         $("#petStatus").attr("disabled", true);
     }
+
     let petName = getUrlParam("name");
     let petTags = getUrlParam("tags");
     let petCategory = getUrlParam("category");
@@ -67,30 +68,11 @@ function imageUpload(option) {
     $('#imageUpload').modal(option);
 }
 
-function getPet(id) {
-    $.ajax({
-        url: "https://petstore.swagger.io/v2/pet/" + id,
-        type: "GET",
-        cache: false,
-        success: function (data) {
-            console.log(data);
-        },
-        error: function (error) {
-            console.log(error.responseJSON);
-        }
-    });
-}
-
 function getUrlParam(name) {
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     let r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
-}
-
-function checkQuantity(num) {
-    let reg = /^((?!0)\d{1,9})$/;
-    return num.match(reg) && num < 100;
 }
 
 function placeOrder() {
@@ -103,9 +85,9 @@ function placeOrder() {
                 id: date,
                 petId: parseInt(getUrlParam("id")),
                 petName: getUrlParam("name"),
-                petQuantity: parseInt($("#inputQuantity").val()),
-                // Delay for 7 days(432000000 milliseconds) as shipping time.
-                shipDate: new Date(date + 432000000).Format('yy-MM-dd hh:mm:ss'),
+                petQuantity: 1,
+                // Delay for 3 days(259200000 milliseconds) as shipping time.
+                shipDate: new Date(date + 259200000).Format('yy-MM-dd hh:mm:ss'),
                 status: "placed"
             }
             let orders = Storage.get(user);
@@ -117,6 +99,7 @@ function placeOrder() {
                 orderArr.push(obj);
                 Storage.set(user, orderArr, 21600);
             }
+            updatePetStatus(obj.id, "pending");
             bs4pop.notice("Purchase success! The order id is " + obj.id + '.', {type: 'success'});
             displayOrderQuantity()
         }
