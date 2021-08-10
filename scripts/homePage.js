@@ -62,10 +62,17 @@ function changeCategory(category) {
 function openDetail(element) {
     let petId = $(element).parent().parent()[0].id;
     let petName = $(element).children().children("h5")[0].innerText;
-    let petTags = $(element).children().children("span")[0].innerText;
     let petCategory = $(element).parent().parent().children("p")[0].innerText;
     let petImage = $(element).siblings("img").attr("src");
     let petStatus = $("#navbarDropdown")[0].innerText.toLowerCase();
+    let allPetTags = $(element).children().children('span');
+    let petTags = '';
+    for (let i = 0; i<allPetTags.length; i++) {
+        if (i !== 0)
+            petTags += ' ' + allPetTags[i].innerText;
+        else
+            petTags += allPetTags[i].innerText;
+    }
     window.location = "detail.html?id=" + petId.toString() + '&name=' + petName
         + '&tags=' + petTags + '&category=' + petCategory + '&status=' + petStatus + '&image=' + petImage;
 }

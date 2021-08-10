@@ -146,7 +146,7 @@ function shipOrder(id) {
                 let ordersData = Storage.get(key);
                 for (let j = 0; j < ordersData.length; j++) {
                     if (id === ordersData[j].id) {
-                        ordersData[j].status = "shipping";
+                        ordersData[j].status = "sending";
                     }
                 }
                 Storage.set(key, ordersData, 21600);
