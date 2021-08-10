@@ -30,9 +30,11 @@ function requestStatus(status) {
     `;
 
     const petListObjectTagTemplate = `
-      <span class="tag">PET_TAG_WILL_GO_HERE</span>
+      <span class="badge rounded-pill bg-PET_TAG_STYLE">PET_TAG_WILL_GO_HERE</span>
     `
     const getPetsUrl = 'https://petstore.swagger.io/v2/pet/findByStatus?status=' + status;
+
+    const badgeList = ["primary","success","danger","warning","info","dark"]
 
     fetch(getPetsUrl, {headers: {'Content-Type': 'application/json'}})
         .then((response) => response.json())
@@ -52,6 +54,7 @@ function requestStatus(status) {
                             buttonHTML += '<a class="btn btn-danger mt-auto disabled" href="#">SOLD</a>';
 
                         if (Array.isArray(pet.tags)) {
+                            let index = 0;
                             pet.tags.forEach((tag) => {
                                 if (
                                     typeof tag === 'object' &&
@@ -59,6 +62,11 @@ function requestStatus(status) {
                                     Object.prototype.hasOwnProperty.call(tag, 'name') &&
                                     typeof tag.name === 'string') {
                                     petTags += petListObjectTagTemplate.replace('PET_TAG_WILL_GO_HERE', tag.name)
+                                    petTags = petTags.replace('PET_TAG_STYLE', badgeList[index])
+                                    if (index < (badgeList.length - 1))
+                                        index++;
+                                    else
+                                        index = 0;
                                 }
                             });
                         }
